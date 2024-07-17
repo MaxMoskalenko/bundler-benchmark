@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.signMessage = void 0;
+const viem_1 = require("viem");
+const actions_1 = require("viem/actions");
+const wrapMessageHash_1 = require("./wrapMessageHash.js");
+async function signMessage(client, { account: account_ = client.account, message, accountAddress, accountVersion }) {
+    if (accountVersion === "0.2.2") {
+        return (0, actions_1.signMessage)(client, {
+            account: account_,
+            message
+        });
+    }
+    const wrappedMessageHash = (0, wrapMessageHash_1.wrapMessageHash)((0, viem_1.hashMessage)(message), {
+        accountVersion,
+        accountAddress,
+        chainId: client.chain
+            ? client.chain.id
+            : await client.extend(viem_1.publicActions).getChainId()
+    });
+    const signature = await (0, actions_1.signMessage)(client, {
+        account: account_,
+        message: { raw: wrappedMessageHash }
+    });
+    return signature;
+}
+exports.signMessage = signMessage;
+//# sourceMappingURL=signMessage.js.map

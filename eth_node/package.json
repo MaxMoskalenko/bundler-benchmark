@@ -1,0 +1,18 @@
+{
+  "name": "eth_node",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "activate": "node ./activate-smart-accounts.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zerodev/ecdsa-validator": "5.2.3",
+    "@zerodev/sdk": "5.2.13",
+    "permissionless": "0.1.29",
+    "tslib": "2.6.2",
+    "viem": "2.10.9",
+    "web3": "4.8.0"
+  }
+}

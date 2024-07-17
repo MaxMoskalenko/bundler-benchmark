@@ -1,0 +1,1 @@
+{"version":3,"file":"multisend.d.ts","sourceRoot":"","sources":["../../../accounts/utils/multisend.ts"],"names":[],"mappings":"AAAA,OAAO,EAAgB,KAAK,GAAG,EAAyB,MAAM,MAAM,CAAA;AACpE,OAAO,KAAK,EAAY,wBAAwB,EAAE,MAAM,sBAAsB,CAAA;AAE9E,eAAO,MAAM,iBAAiB,+CAA+C,CAAA;AAE7E,eAAO,MAAM,YAAY;;;;;;;GAMxB,CAAA;AAsBD,eAAO,MAAM,eAAe,UAAW,wBAAwB,KAAG,GAMjE,CAAA"}

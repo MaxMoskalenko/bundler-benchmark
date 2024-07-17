@@ -1,0 +1,48 @@
+version: "3.6"
+
+services:
+  eth_node:
+    build:
+      context: ./eth_node
+    platform: linux/amd64
+    container_name: eth_node
+    ports:
+      - 8545:8545
+    environment:
+      DEPLOYER_PK: "6aa35771f25b5098020350399171952bdaafd8b381eb777577befd5ee995a122"
+      DEPLOYER_ADDRESS: "0x25ba87CA70739Bc8448D018Ad4A11F35Ea5a2DF9"
+      KERNEL_ECDSA_VALIDATOR_ADDRESS: "0x0e3c0cb9f2ae0053f2b236b698c2028112b333a7"
+      KERNEL_ADDRESS: "0x8bdf2cee549101447fa141fffc9f6e3b2be8bbf2"
+      KERNEL_FACTORY_ADDRESS: "0x9cbdd0d809f3490d52e3609044d4cf78f4df3a5f"
+      SESSION_KEY_VALIDATOR_ADDRESS: "0x18d865c12377cf6d106953b83ee1b5ba7c3073ac"
+      TARGET_ACCOUNTS_NUMBER: 500
+  bundler:
+    image: quay.io/openware/bundler:0f99f93
+    platform: linux/amd64
+    ports:
+      - 3000:3000
+    entrypoint:
+      - pnpm
+      - start
+      - --port
+      - "3000"
+      - --network-name
+      - "mainnet"
+      - --entrypoints
+      - "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"
+      - --executor-private-keys
+      - "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      - --utility-private-key
+      - "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      - --min-executor-balance
+      - "1000000000000000000"
+      - --rpc-url
+      - "http://eth_node:8545"
+      - --log-level
+      - "info"
+      - --safe-mode
+      - "false"
+      - --max-gas-per-bundle
+      - "500000000"
+      - --mempool-max-parallel-ops
+      - "100"
